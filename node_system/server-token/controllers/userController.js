@@ -49,7 +49,7 @@ const delUser = (req, res) => {
   }).catch(err=>{
     res.json({
       success: true,
-      message: 'successfully deleted'    
+      message: 'success delete'    
       });
   })
    
@@ -103,14 +103,15 @@ const Login = (req, res) => {
       if (!user) {
         res.json({
           success: false,
-          message: 'acc doesnt exist'
+          message: 'account doesnt exist'
         });
       } else if (userLogin.password === user.password) {
         var name = req.body.name;
         res.json({
           success: true,
           type: user.usertype,
-          message: 'successful login',
+          message: 'success login',
+          userid: user._id,
           name: name,
           token: addTokenList(name),
         });
@@ -154,7 +155,7 @@ const updateUser = (req, res) => {
       } else {
         res.json({
           success: false,
-          message: 'user name exist'
+          message: 'name already exist'
         });
       }
     })

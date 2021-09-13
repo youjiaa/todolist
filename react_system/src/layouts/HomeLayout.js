@@ -50,7 +50,7 @@ class HomeLayout extends React.Component{
             <Layout style={{width:"100vw",height:"100vh"}}>
                 <Header className="header">
                     <div className="logo">
-                        <span style={{color:"#fff",fontSize:22,fontWeight:"bold"}}>System Admin</span>
+                        <span style={{color:"#fff",fontSize:22,fontWeight:"bold"}}>User System</span>
                         <span style={{color:"#fff",fontSize:16,fontWeight:"bold",float:'right'}}>
                         <Dropdown overlay={menu}>
                             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
@@ -80,7 +80,8 @@ class HomeLayout extends React.Component{
                             }
                         
                             {
-                                this.state.userType === '0'?(
+                                this.state.userType === '0' ? (
+                                    
                                     <SubMenu key="sub4" title={<span><Icon type="user" />User management</span>}>
                                         <Menu.Item key="7">
                                             <Link to="/UserList/list">User List</Link>
@@ -88,7 +89,18 @@ class HomeLayout extends React.Component{
                                         <Menu.Item key="8">
                                             <Link to="/UserList/add">Add User</Link>
                                         </Menu.Item>
+                                        <Menu.Item key="3">
+                                            <Link to="/todolist/list">todolistList</Link>
+                                        </Menu.Item>
+        
+                                        <Menu.Item key="4">
+                                            <Link to="/todolist/add">Addtodolist</Link>
+                                        </Menu.Item>
                                     </SubMenu>
+                                    /* <SubMenu key="sub2" title={<span><Icon type="book" />todolist management</span>}>
+
+                                        </SubMenu> */
+                                    
                                 ):""
                             }
                         </Menu>

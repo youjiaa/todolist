@@ -23,7 +23,7 @@ const getTodo = (req, res) => {
     .then(list => {
       res.json({
         success: true,
-        message: 'success',
+        message: 'success get',
         data: list
       });
     })
@@ -36,7 +36,7 @@ const getTodoByid = (req, res) => {
     .then(list => {
       res.json({
         success: true,
-        message: 'success',
+        message: 'success get by id',
         data: list
       });
     })

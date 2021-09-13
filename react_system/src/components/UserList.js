@@ -154,6 +154,7 @@ class UserList extends React.Component {
             key: 'operation',
             render: (text, record) => (
                 <span type="ghost">
+                    {/* {typeName = "admin" ? <Button size="small" onClick={() => this.modifyFunction(record)}>Update</Button> : null} */}
                     <Button size="small" onClick={() => this.modifyFunction(record)}>Update</Button>
                     <Button size="small" onClick={() => this.removeUser(record)}>Delete</Button>
                 </span>

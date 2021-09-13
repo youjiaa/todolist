@@ -11,13 +11,13 @@ module.exports = function(req, res, next) {
       return res.json({
         success: false,
         token: false,
-        error: 'invalid token，please sign in'
+        error: 'invalid token, please login'
       });
     } else if (decoded.exp == undefined) {
       res.json({
         success: false,
         token: false,
-        error: 'invalid token'
+        error: 'illegal token'
       });
     } else {
       next();

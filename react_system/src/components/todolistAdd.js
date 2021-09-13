@@ -29,13 +29,10 @@ class FormLayout extends React.Component{
     componentWillMount() {
         const { history } = this.props
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
-
     }
 
     handleSubmit(e){
         e.preventDefault();
-        const { history } = this.props
-
         this.props.form.validateFields(function(errors,value){
             if(!errors){
                 console.log(value)
@@ -60,9 +57,6 @@ class FormLayout extends React.Component{
                 }
             });
     }
-
-
-
 
     render(){
         const { getFieldDecorator } = this.props.form;

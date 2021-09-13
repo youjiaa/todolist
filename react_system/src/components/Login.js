@@ -47,7 +47,7 @@ class Login extends React.Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <div className="bg">
-        <div className="logintitle">Managerment System</div>
+        <div className="logintitle">Management System</div>
         <div className="box1">
           <div className="middle1">
             <div className="middle_left">

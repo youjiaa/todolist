@@ -16,11 +16,7 @@ class todoList extends React.Component {
     }
 
     componentWillMount() {
-        const { history } = this.props
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
-        if(userinfo.type === '0'){
-            history.push('/login')
-        }
         axios.post(
             `http://localhost:3001/api/todolist/getTodo/${userinfo.userid}`,
             {
@@ -45,11 +41,7 @@ class todoList extends React.Component {
     }
 
     getData(){
-        const { history } = this.props
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
-        if(userinfo.type === '0'){
-            history.push('/login')
-        }
         axios.post(
             `http://localhost:3001/api/todolist/getTodo/${userinfo.userid}`,
             {
@@ -69,10 +61,10 @@ class todoList extends React.Component {
 
     
     deleteTodo(record){
-        console.log(record)
-        const { history } = this.props
+        // console.log(record)
+        // const { history } = this.props
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
-        console.log(userinfo.token)
+        // console.log(userinfo.token)
         axios.delete(
             `http://localhost:3001/api/todolist/delTodo/${record._id}`,
            {
