@@ -129,14 +129,13 @@ const AllUser = (req, res) => {
     .then(user => {
       res.json({
         success: true,
-        message: '成功',
+        message: 'success',
         data: user
       });
     })
     .catch(err => res.json(err));
 };
 
-//更新用户
 const updateUser = (req, res) => {
   User.findOne({
     name: req.body.name
@@ -147,7 +146,7 @@ const updateUser = (req, res) => {
         .then(user => {
           res.json({
             success: true,
-            message: '修改成功',
+            message: 'success update',
             data: user
           });
         })
@@ -155,7 +154,7 @@ const updateUser = (req, res) => {
       } else {
         res.json({
           success: false,
-          message: '用户名已经存在'
+          message: 'user name exist'
         });
       }
     })

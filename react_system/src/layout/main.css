@@ -1,0 +1,37 @@
+.box1{
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.middle1 {
+    overflow: hidden;
+    height: 470px;
+    background: #fff;
+    width: 1000px;
+   display: inline-block;
+   text-align: center;
+  margin-top: 30px;
+}
+.middle_left {
+  float: left;
+   width: 400px;
+}
+.middle_left img {
+  width: 100%;
+}
+.middle_right {
+  float: left;
+  height: 470px;
+  margin-left: 50px;
+  margin-top: 50px;
+  text-align: center;
+  display: inline-block;
+}
+.ant-input{
+  width: 350px;
+}
+.logintitle{
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+}

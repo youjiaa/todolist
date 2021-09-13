@@ -19,11 +19,26 @@ const Addtodolist = (req, res) => {
 };
 
 const getTodo = (req, res) => {
-  console.log({_id:req.params.id},"123")
-
   todolist.find({userid:req.params.userid})
     .then(list => {
-      res.json(list);
+      res.json({
+        success: true,
+        message: 'success',
+        data: list
+      });
+    })
+    .catch(err => res.json(err));
+};
+
+
+const getTodoByid = (req, res) => {
+  todolist.findOne({_id:req.params.id})
+    .then(list => {
+      res.json({
+        success: true,
+        message: 'success',
+        data: list
+      });
     })
     .catch(err => res.json(err));
 };
@@ -37,18 +52,19 @@ const delTodo = (req, res) => {
   }).catch(err=>{
     res.json({
       success: true,
-      message: 'successfully deleted'    
+      message: 'success delete'    
       });
   })
+   
 };
 
 const updateTodolist = (req, res) => {
-  User.update({_id:req.params.id},{title:req.body.title,content:req.body.content})
-  .then(user => {
+  todolist.update({_id:req.params.id},{title:req.body.title,content:req.body.content})
+  .then(todolist => {
     res.json({
       success: true,
-      message: 'successfully updated',
-      data: user
+      message: 'success update',
+      data: todolist
     });
   })
   .catch(err => res.json(err));
@@ -58,7 +74,8 @@ const updateTodolist = (req, res) => {
 
 module.exports = router => {
   router.post('/addtodolist', Addtodolist),
-  router.get('/getTodo/:userid', isVailToken, getTodo);
+  router.post('/getTodo/:userid', isVailToken, getTodo);
+  router.post('/getTodoByid/:id', isVailToken, getTodoByid);
   router.delete('/delTodo/:id', delTodo);
   router.put('/updateTodolist/:id',isVailToken, updateTodolist);
 };
