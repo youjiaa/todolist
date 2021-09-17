@@ -28,7 +28,7 @@ class FormLayout extends React.Component{
 
     componentWillMount() {
         const { history } = this.props
-        let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+        let userinfo = JSON.parse(localStorage.getItem("userinfo"))
     }
 
     handleSubmit(e){
@@ -36,7 +36,7 @@ class FormLayout extends React.Component{
         this.props.form.validateFields(function(errors,value){
             if(!errors){
                 // console.log(value)
-                let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+                let userinfo = JSON.parse(localStorage.getItem("userinfo"))
                 let obj = { 
                 "title": value.title,
                 "content": value.content, 

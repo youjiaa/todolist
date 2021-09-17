@@ -34,7 +34,7 @@ class Login extends React.Component {
           .then(response => {
             if (response.data.success != false) {
               message.info('success register');
-              sessionStorage.setItem("userinfo",JSON.stringify(response.data.data))
+              localStorage.setItem("userinfo",JSON.stringify(response.data.data))
               history.push('/login')
 
             } else {

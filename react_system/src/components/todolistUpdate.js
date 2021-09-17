@@ -31,7 +31,7 @@ class FormLayout extends React.Component{
 
     componentDidMount() {
         const { history } = this.props
-        let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+        let userinfo = JSON.parse(localStorage.getItem("userinfo"))
         let id = this.props.match.params.id
         // console.log(id)
         axios.post(
@@ -56,8 +56,8 @@ class FormLayout extends React.Component{
         const  record  = this.state.formData;
         this.props.form.validateFields(function(errors,value){
             if(!errors){
-                console.log(value)
-                let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+                // console.log(value)
+                let userinfo = JSON.parse(localStorage.getItem("userinfo"))
                 let obj = { 
                     "title": value.title,
                     "content": value.content, 

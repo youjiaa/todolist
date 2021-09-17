@@ -24,7 +24,7 @@ class UserList extends React.Component {
 
     componentDidMount() {
         const { history } = this.props
-        let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+        let userinfo = JSON.parse(localStorage.getItem("userinfo"))
         if(userinfo.type === '1'){
             history.push('/login')
         }
@@ -46,7 +46,7 @@ class UserList extends React.Component {
     }
    
     getData() {
-        let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+        let userinfo = JSON.parse(localStorage.getItem("userinfo"))
         axios.post(
             `http://localhost:3001/api/token/AllUser`,
             {
@@ -77,23 +77,25 @@ class UserList extends React.Component {
     }
 
     commitFunction(value) {
-        let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+        const { history } = this.props
+        let userinfo = JSON.parse(localStorage.getItem("userinfo"))
         axios.put(
             `http://localhost:3001/api/token/updateUser/${value._id}`,
             {
                 "_id": value._id,
-                "type": value.usertype == "admin"?'0':'1',
+                "type": value.usertype == "user"?'1':'0',
                 "name": value.name,
             },
             { headers: { Authorization: `token ${userinfo.token}` } }
         )
             .then(res => {
                 if (res.data.success) {
-                    this.getData()
-                    message.success("success")
-                    // if () {
-                    //     history.push('/login');
-                    // }
+                    if (value._id == userinfo.userid) {
+                        history.push('/login');
+                    } else {
+                        this.getData()
+                        message.success("success")   
+                    }
                 } else {
                     message.error(res.data.message)
                 }
@@ -110,12 +112,12 @@ class UserList extends React.Component {
     removeUser(record){
         console.log(record)
         const { history } = this.props
-        let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+        let userinfo = JSON.parse(localStorage.getItem("userinfo"))
         // console.log(userinfo.token)
         axios.delete(
             `http://localhost:3001/api/token/delUser/${record._id}`,
            {
-               data:{a:1}
+               data:{}
            },
             { headers: { Authorization: `token ${userinfo.token}` } }
         )

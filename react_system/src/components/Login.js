@@ -25,10 +25,10 @@ class Login extends React.Component {
             }
           })
           .then(response => {
-            // console.log(response)
+            console.log(response,"login")
             if (response.data.success ) {
               message.info('success login');
-              sessionStorage.setItem("userinfo",JSON.stringify(response.data))
+              localStorage.setItem("userinfo",JSON.stringify(response.data))
               history.push('/UserList/personInfo')
             } else {
               message.error(response.data.message);

@@ -22,7 +22,7 @@ class UserAdd extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         let  registerDate  = this.state.registerDate
-        let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
+        let userinfo = JSON.parse(localStorage.getItem("userinfo"))
         this.props.form.validateFields(function (errors, value) {
             if (!errors) {
                 let obj = {

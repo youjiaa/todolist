@@ -157,15 +157,15 @@ const updateUser = (req, res) => {
         })
         .catch(err => res.json(err));
       } else {
-        if(user._id == req.params.id){
-            User.update({_id:req.params.id},{usertype:req.body.type,name:req.body.name})
-            .then(user => {
-            res.json({
-                success: true,
-                message: 'success update',
-                data: user
-            });
-            })
+        if (user._id == req.params.id) {
+          User.update({_id:req.params.id},{usertype:req.body.type,name:req.body.name})
+          .then(user => {
+          res.json({
+              success: true,
+              message: 'success update',
+              data: user
+          });
+          })
             .catch(err => res.json(err));
         }else{
             res.json({
@@ -173,7 +173,6 @@ const updateUser = (req, res) => {
                 message: 'name is taken'
             });
         }
-        
       }
     })
     .catch(err => res.json(err));

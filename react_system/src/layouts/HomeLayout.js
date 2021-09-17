@@ -14,7 +14,7 @@ class HomeLayout extends React.Component{
         };
     }
     componentDidMount(){
-        let userinfo = sessionStorage.getItem("userinfo")
+        let userinfo = localStorage.getItem("userinfo")
         const { history } = this.props
         if(userinfo){
             userinfo = JSON.parse(userinfo)
