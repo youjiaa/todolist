@@ -4,10 +4,9 @@ import axios from 'axios'
 import "../layout/main.css";
 import Link from "react-router-dom/Link";
 const layout = {
-  labelCol: { span: 9 },
-  wrapperCol: { span: 6 },
+  labelcol: { span: 9 },
+  wrappercol: { span: 6 },
 };
-
 
 class Login extends React.Component {
   onFinish(e) {
@@ -26,7 +25,7 @@ class Login extends React.Component {
             }
           })
           .then(response => {
-            console.log(response)
+            // console.log(response)
             if (response.data.success ) {
               message.info('success login');
               sessionStorage.setItem("userinfo",JSON.stringify(response.data))

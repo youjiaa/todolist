@@ -35,7 +35,7 @@ class FormLayout extends React.Component{
         e.preventDefault();
         this.props.form.validateFields(function(errors,value){
             if(!errors){
-                console.log(value)
+                // console.log(value)
                 let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
                 let obj = { 
                 "title": value.title,
@@ -62,7 +62,7 @@ class FormLayout extends React.Component{
         const { getFieldDecorator } = this.props.form;
         const  record  = this.state.record;
         const  teacherList  = this.state.teacherList;
-       console.log(record,teacherList)
+    //    console.log(this.state)
         return (
             <Form onSubmit= {this.handleSubmit.bind(this)}>
          

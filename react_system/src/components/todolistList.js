@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button, message, Divider } from 'antd';
+import { Table, Button, message, Divider, Spin } from 'antd';
 import axios from 'axios'
 class todoList extends React.Component {
     constructor(props) {
@@ -11,11 +11,11 @@ class todoList extends React.Component {
             confirmLoading: false,
             formData: {},
             operation: "",
-            todoList: []
+            todoList: [],
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
         axios.post(
             `http://localhost:3001/api/todolist/getTodo/${userinfo.userid}`,
@@ -25,9 +25,10 @@ class todoList extends React.Component {
             { headers: { Authorization: `token ${userinfo.token}` } }
         )
             .then(res => {
-                    console.log(res.data)
                 if (res.data.success) {
-                    this.setState({ todoList: res.data.data })
+                    this.setState({
+                        todoList: res.data.data
+                    })
                 } else {
                     message.error(res.data.message)
                 }
@@ -50,9 +51,10 @@ class todoList extends React.Component {
             { headers: { Authorization: `token ${userinfo.token}` } }
         )
             .then(res => {
-                    console.log(res.data)
                 if (res.data.success) {
-                    this.setState({ todoList: res.data.data })
+                    this.setState({
+                        todoList: res.data.data
+                    })
                 } else {
                     message.error(res.data.message)
                 }
@@ -100,9 +102,9 @@ class todoList extends React.Component {
             key: 'operation',
             render: (text, record) => (
                 <span type="ghost">
-                    <Button size="small" onClick={() => this.deleteTodo(record)}>delete</Button>
-                    <Divider type="vertical" />
                     <Button size="small" onClick={() => this.modifyFunction(record)}>edit</Button>
+                    <Divider type="vertical" />
+                    <Button size="small" onClick={() => this.deleteTodo(record)}>delete</Button>
                     <Divider type="vertical" />
                 </span>
             )

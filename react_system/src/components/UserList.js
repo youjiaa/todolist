@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button, Popconfirm, Input, Row, Col, Modal, message } from 'antd';
+import { Table, Button, Divider, Input, Row, Col, Modal, message } from 'antd';
 import PropTypes from 'prop-types';
 import UserUpdate from './UserUpdate';
 import axios from 'axios'
@@ -22,7 +22,7 @@ class UserList extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { history } = this.props
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
         if(userinfo.type === '1'){
@@ -91,6 +91,9 @@ class UserList extends React.Component {
                 if (res.data.success) {
                     this.getData()
                     message.success("success")
+                    // if () {
+                    //     history.push('/login');
+                    // }
                 } else {
                     message.error(res.data.message)
                 }
@@ -108,7 +111,7 @@ class UserList extends React.Component {
         console.log(record)
         const { history } = this.props
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
-        console.log(userinfo.token)
+        // console.log(userinfo.token)
         axios.delete(
             `http://localhost:3001/api/token/delUser/${record._id}`,
            {
@@ -127,7 +130,7 @@ class UserList extends React.Component {
     }
 
     render() {
-        const { bookList, removeBookData } = this.props;
+        // const { bookList, removeBookData } = this.props;
         const { title, ModalShow, confirmLoading, userList } = this.state;
         let userListInfo = userList.map(Item => {
             let typeName = "user"
@@ -154,9 +157,10 @@ class UserList extends React.Component {
             key: 'operation',
             render: (text, record) => (
                 <span type="ghost">
-                    {/* {typeName = "admin" ? <Button size="small" onClick={() => this.modifyFunction(record)}>Update</Button> : null} */}
                     <Button size="small" onClick={() => this.modifyFunction(record)}>Update</Button>
+                    <Divider type="vertical" />
                     <Button size="small" onClick={() => this.removeUser(record)}>Delete</Button>
+                    <Divider type="vertical" />
                 </span>
             )
         }];

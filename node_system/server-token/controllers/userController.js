@@ -13,9 +13,9 @@ const addUser = (req, res) => {
     token: addTokenList(this.name)
   });
 
-  userRegister.create_time = moment(
-    objectIdToTimestamp(userRegister._id)
-  ).format('YYYY-MM-DD HH:mm:ss');
+  // userRegister.create_time = moment(
+  //   objectIdToTimestamp(userRegister._id)
+  // ).format('YYYY-MM-DD HH:mm:ss');
 
   User.findOne({
     name: userRegister.name.toLowerCase()
@@ -40,7 +40,8 @@ const addUser = (req, res) => {
 };
 
 const delUser = (req, res) => {
-  console.log({_id:req.params.id},"123")
+  //console.log(ObjectId(req.params.id))
+  // console.log({_id:req.params.id},"123")
   User.remove({_id:req.params.id}).then(res=>{
     res.json({
       success: false,
@@ -57,6 +58,7 @@ const delUser = (req, res) => {
 
 
 const Register = (req, res) => {
+  // console.log(req.body)
   let userRegister = new User({
     name: req.body.name,
     password: sha1(req.body.password),
@@ -64,9 +66,9 @@ const Register = (req, res) => {
     token: addTokenList(this.name)
   });
 
-  userRegister.create_time = moment(
-    objectIdToTimestamp(userRegister._id)
-  ).format('YYYY-MM-DD HH:mm:ss');
+  // userRegister.create_time = moment(
+  //   objectIdToTimestamp(userRegister._id)
+  // ).format('YYYY-MM-DD HH:mm:ss');
 
   User.findOne({
     name: userRegister.name.toLowerCase()
@@ -101,12 +103,14 @@ const Login = (req, res) => {
   })
     .then(user => {
       if (!user) {
+        //console.log(user)
         res.json({
           success: false,
           message: 'account doesnt exist'
         });
       } else if (userLogin.password === user.password) {
         var name = req.body.name;
+        //name=user.name
         res.json({
           success: true,
           type: user.usertype,
@@ -153,14 +157,26 @@ const updateUser = (req, res) => {
         })
         .catch(err => res.json(err));
       } else {
-        res.json({
-          success: false,
-          message: 'name already exist'
-        });
+        if(user._id == req.params.id){
+            User.update({_id:req.params.id},{usertype:req.body.type,name:req.body.name})
+            .then(user => {
+            res.json({
+                success: true,
+                message: 'success update',
+                data: user
+            });
+            })
+            .catch(err => res.json(err));
+        }else{
+            res.json({
+                success: false,
+                message: 'name is taken'
+            });
+        }
+        
       }
     })
     .catch(err => res.json(err));
-
 }; 
 
 

@@ -5,8 +5,6 @@ import { Layout, Menu, Icon ,Dropdown} from 'antd';
 const { SubMenu  } = Menu;
 const { Header, Content, Sider } = Layout;
 
-
-
 class HomeLayout extends React.Component{
     constructor(props){
         super(props);
@@ -21,9 +19,10 @@ class HomeLayout extends React.Component{
         if(userinfo){
             userinfo = JSON.parse(userinfo)
             this.setState({
-                systemName: userinfo.userName,
+                systemName: userinfo.name,
                 userType: userinfo.type,
             })
+            // console.log(userinfo)
         }else{
             history.push('/login');
         }
@@ -31,7 +30,7 @@ class HomeLayout extends React.Component{
 
     clickMenu(e){
         const { history } = this.props
-        console.log(e.key)
+        // console.log(e.key)
         if(e.key === "logout"){
             history.push('/login');
         }
@@ -45,16 +44,15 @@ class HomeLayout extends React.Component{
             </Menu>
           );
 
-        console.log()
         return (
             <Layout style={{width:"100vw",height:"100vh"}}>
                 <Header className="header">
                     <div className="logo">
-                        <span style={{color:"#fff",fontSize:22,fontWeight:"bold"}}>User System</span>
+                        <span style={{color:"#fff",fontSize:22,fontWeight:"bold"}}>User Dashboard</span>
                         <span style={{color:"#fff",fontSize:16,fontWeight:"bold",float:'right'}}>
                         <Dropdown overlay={menu}>
                             <a className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                            {this.state.systemName} <Icon type="down" />
+                             {this.state.systemName} <Icon type="down" />
                             </a>
                         </Dropdown>
                             
@@ -63,7 +61,7 @@ class HomeLayout extends React.Component{
                 </Header>
 
                 <Layout>
-                    <Sider width={200} style={{ background: '#fff' }}>
+                    <Sider width={300} style={{ background: '#fff' }}>
                         <Menu mode="inline" defaultSelectedKeys={['1']} defaultOpenKeys={['sub1']} style={{ height: '100%', borderRight: 0 }}>
                             {
                                 this.state.userType === '1'?(

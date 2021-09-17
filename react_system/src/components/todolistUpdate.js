@@ -9,7 +9,7 @@ const formItemLayout = {
     wrapperCol : {span : 15} 
 };
 class FormLayout extends React.Component{
-    
+
     constructor(props) {
         super(props);
 
@@ -29,11 +29,11 @@ class FormLayout extends React.Component{
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         const { history } = this.props
         let userinfo = JSON.parse(sessionStorage.getItem("userinfo"))
         let id = this.props.match.params.id
-        console.log(id)
+        // console.log(id)
         axios.post(
             `http://localhost:3001/api/todolist/getTodoByid/${id}`,
             {
